@@ -81,9 +81,9 @@ Open http://localhost:5000 and have fun. :smiley:
 
 ### Use your own model
 
-Place your trained `.h5` file saved by `model.save()` under models directory.
+Place your trained `.h5` (for keras) or `.pkl` (for PyTorch) file saved by `model.save()` under models directory (preferrably) or specify a path to it.
 
-Check the [commented code](https://github.com/mtobeiyf/keras-flask-deploy-webapp/blob/master/app.py#L25) in app.py.
+Check the [commented code](https://github.com/manjrekarom/keras-flask-deploy-webapp/blob/master/app.py) in app.py.
 
 
 ### Use other pre-trained model
@@ -137,3 +137,11 @@ server {
 Check Siraj's ["How to Deploy a Keras Model to Production"](https://youtu.be/f6Bf3gl4hWY) video. The corresponding [repo](https://github.com/llSourcell/how_to_deploy_a_keras_model_to_production).
 
 [Building a simple Keras + deep learning REST API](https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html)
+
+
+## Todos
+
+- [ ] Showing top N classes
+- [ ] Manual cropping
+- [ ] Visualization of learned features (saliency maps, grad-CAMs, etc).
+- [ ] Support for different types models and frameworks
