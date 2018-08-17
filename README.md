@@ -23,28 +23,11 @@
 
 ------------------
 
-## Docker Installation
-
-Build the image
-
-```shell
-cd keras-flask-deploy-webapp
-docker build -t keras_flask .
-docker run -e MODEL_PATH=models/your_model.h5 -p 5000:5000
-```
-
-You can mount your model into the container.
-
-```shell
-docker run -e MODEL_PATH=/mnt/models/your_model.h5  -v volume-name:/mnt/models -p 5000:5000 keras_flask
-```
-
-
 ## Local Installation
 
 ### Clone the repo
 ```shell
-$ git clone https://github.com/mtobeiyf/keras-flask-deploy-webapp.git
+$ git clone https://github.com/manjrekarom/keras-flask-deploy-webapp.git
 ```
 
 ### Install requirements
@@ -55,6 +38,8 @@ $ pip install -r requirements.txt
 
 Make sure you have the following installed:
 - tensorflow
+- pytorch
+- torchvision
 - keras
 - flask
 - pillow
@@ -65,8 +50,21 @@ Make sure you have the following installed:
 
 Python 2.7 or 3.5+ are supported and tested.
 
+Examples:
+
+1. To start serving a pretrained keras model:
 ```shell
 $ python app.py
+```
+
+1. Alternatively, you can specify pytorch models, image size and class categories for custom models.
+```shell
+$ python app.py -t ./models/animal/cnn.pkl -d 112 112 -c ./models/animal/class.txt --delim " "
+```
+
+3. For usage details:
+```shell
+$ python app.py -h
 ```
 
 ### Play
