@@ -1,11 +1,4 @@
-bear
-cougar
-cow
-coyote
-deer
-elephant
-giraffe
-goat
+bear cougar cow coyote deer elephant giraffe goat
 gorilla
 horse
 kangaroo
