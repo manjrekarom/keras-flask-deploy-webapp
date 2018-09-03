@@ -22,6 +22,7 @@ import argparse
 
 # setup for argparse
 parser = argparse.ArgumentParser(description='Deployan Image Classifier')
+parser.add_argument('-p', '--port', metavar='PORT', help='port for web application', type=int)
 parser.add_argument('-k', '--keras-model', metavar='PATH', help='path to the keras model to use', type=str)
 parser.add_argument('-t', '--torch-model', metavar='PATH', 
 help='path to the keras model to use(won\'t work along with -k or --keras)', type=str)
@@ -31,7 +32,7 @@ parser.add_argument('-c', '--classes', metavar='PATH', help='path to the text fi
 parser.add_argument('--delim', metavar='DELIMETER', help='delimeter for file categories', type=str)
 args = parser.parse_args()
 
-
+print(args)
 # Global variables
 MODEL_TYPES = {"k": "KERAS", "t": "TORCH", "kp": "KERAS_PRETRAINED"}
 CLASSES = None
@@ -64,7 +65,7 @@ else:
 app = Flask(__name__)
 app.debug = True
 
-print('Model loaded. Check http://127.0.0.1:5000/')
+print('Model loaded. Check http://127.0.0.1:' + str(args.port))
 
 
 def preprocess_for_keras(img_path, img_size=(224, 224)):
@@ -194,5 +195,7 @@ def upload():
 if __name__ == '__main__':
     # app.run(port=5002, debug=True)
     # Serve the app with gevent
-    http_server = WSGIServer(('', 5000), app)
+    if args.port == None:
+       args.port = 5000
+    http_server = WSGIServer(('', args.port), app)
     http_server.serve_forever()
